@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FitForge — Programme Personnalisé</title>
+  <meta name="description" content="Votre programme fitness & nutrition généré par algorithme. 100% adapté à votre niveau." />
+
+  <!-- Polices Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/onboarding.css" />
+
+  <!-- tsParticles (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.12.0/tsparticles.slim.bundle.min.js" defer></script>
+</head>
+<body>
+
+  <!-- Fond particules -->
+  <canvas id="particles-canvas" aria-hidden="true"></canvas>
+
+  <!-- ====================================================
+       ONBOARDING — Formulaire multi-étapes
+       ==================================================== -->
+  <main id="onboarding" role="main" aria-label="Configuration de votre profil">
+
+    <div class="ob-logo" aria-label="FitForge">
+      Fit<span>Forge</span>
+    </div>
+
+    <!-- Barre de progression -->
+    <nav class="progress-track" aria-label="Étapes de configuration">
+      <div class="progress-steps" role="list">
+        <!-- Les points sont générés dynamiquement par JS -->
+      </div>
+    </nav>
+
+    <!-- Conteneur de l'étape active -->
+    <div id="ob-step-container" role="region" aria-live="polite" aria-atomic="true"></div>
+
+  </main>
+
+  <!-- ====================================================
+       TEMPLATES des étapes (cachés, clonés par JS)
+       ==================================================== -->
+
+  <!-- Étape 1 : Données biométriques -->
+  <template id="tpl-step-1">
+    <div class="ob-card" role="form" aria-labelledby="step1-title">
+      <div class="ob-step-header">
+        <div class="ob-step-num">Étape 01 / 04</div>
+        <h2 class="ob-step-title" id="step1-title">Vos données</h2>
+        <p class="ob-step-sub">Pour calibrer vos besoins caloriques avec précision.</p>
+      </div>
+
+      <div class="field-row">
+        <div class="field" id="field-age">
+          <label for="age">Âge</label>
+          <input type="number" id="age" name="age"
+                 placeholder="25" min="14" max="90"
+                 inputmode="numeric" autocomplete="off" />
+          <span class="field-hint">Années</span>
+          <span class="field-error" role="alert">Âge invalide (14–90)</span>
+        </div>
+        <div class="field" id="field-poids">
+          <label for="poids">Poids</label>
+          <input type="number" id="poids" name="poids"
+                 placeholder="75" min="30" max="250" step="0.5"
+                 inputmode="decimal" autocomplete="off" />
+          <span class="field-hint">Kilogrammes</span>
+          <span class="field-error" role="alert">Poids invalide (30–250 kg)</span>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field" id="field-taille">
+          <label for="taille">Taille</label>
+          <input type="number" id="taille" name="taille"
+                 placeholder="178" min="120" max="230"
+                 inputmode="numeric" autocomplete="off" />
+          <span class="field-hint">Centimètres</span>
+          <span class="field-error" role="alert">Taille invalide (120–230 cm)</span>
+        </div>
+        <div class="field" id="field-genre">
+          <label>Genre <span class="muted">(pour le calcul)</span></label>
+          <div class="choice-grid" role="radiogroup" aria-labelledby="field-genre">
+            <input class="choice-option" type="radio" name="genre" id="genre-h" value="homme" />
+            <label class="choice-label" for="genre-h">
+              <span class="choice-icon" aria-hidden="true">♂</span>
+              Homme
+            </label>
+            <input class="choice-option" type="radio" name="genre" id="genre-f" value="femme" />
+            <label class="choice-label" for="genre-f">
+              <span class="choice-icon" aria-hidden="true">♀</span>
+              Femme
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="field" id="field-activite">
+        <label for="activite">Niveau d'activité actuel</label>
+        <select id="activite" name="activite">
+          <option value="" disabled selected>Choisir…</option>
+          <option value="1.2">Sédentaire (bureau, peu de sport)</option>
+          <option value="1.375">Légèrement actif (1–3 séances/sem.)</option>
+          <option value="1.55">Modérément actif (3–5 séances/sem.)</option>
+          <option value="1.725">Très actif (6–7 séances/sem.)</option>
+          <option value="1.9">Athlète (2× par jour)</option>
+        </select>
+        <span class="field-error" role="alert">Veuillez choisir un niveau d'activité</span>
+      </div>
+
+      <div class="ob-nav">
+        <span></span>
+        <button class="btn btn-primary" id="btn-next-1" type="button">
+          Continuer →
+        </button>
+      </div>
+    </div>
+  </template>
+
+  <!-- Étape 2 : Test de niveau -->
+  <template id="tpl-step-2">
+    <div class="ob-card" role="form" aria-labelledby="step2-title">
+      <div class="ob-step-header">
+        <div class="ob-step-num">Étape 02 / 04</div>
+        <h2 class="ob-step-title" id="step2-title">Votre niveau</h2>
+        <p class="ob-step-sub">Combien de répétitions maximum pouvez-vous réaliser ?
+          Soyez honnête — l'algorithme s'adaptera exactement à vous.</p>
+      </div>
+
+      <div class="slider-field">
+        <div class="slider-header">
+          <span class="slider-name">💪 Pompes</span>
+          <span class="slider-value" id="val-pompes">10</span>
+        </div>
+        <input type="range" id="slider-pompes" name="max_pompes"
+               min="0" max="80" step="1" value="10"
+               aria-label="Maximum de pompes" />
+      </div>
+
+      <div class="slider-field">
+        <div class="slider-header">
+          <span class="slider-name">🏋️ Tractions</span>
+          <span class="slider-value" id="val-tractions">3</span>
+        </div>
+        <input type="range" id="slider-tractions" name="max_tractions"
+               min="0" max="40" step="1" value="3"
+               aria-label="Maximum de tractions" />
+      </div>
+
+      <div class="slider-field">
+        <div class="slider-header">
+          <span class="slider-name">🦵 Squats</span>
+          <span class="slider-value" id="val-squats">20</span>
+        </div>
+        <input type="range" id="slider-squats" name="max_squats"
+               min="0" max="100" step="1" value="20"
+               aria-label="Maximum de squats" />
+      </div>
+
+      <div class="slider-field">
+        <div class="slider-header">
+          <span class="slider-name">🔥 Abdos (Crunchs)</span>
+          <span class="slider-value" id="val-abdos">15</span>
+        </div>
+        <input type="range" id="slider-abdos" name="max_abdos"
+               min="0" max="100" step="1" value="15"
+               aria-label="Maximum de crunchs" />
+      </div>
+
+      <div class="ob-nav">
+        <button class="btn btn-ghost" id="btn-prev-2" type="button">← Retour</button>
+        <button class="btn btn-primary" id="btn-next-2" type="button">Continuer →</button>
+      </div>
+    </div>
+  </template>
+
+  <!-- Étape 3 : Matériel & disponibilité -->
+  <template id="tpl-step-3">
+    <div class="ob-card" role="form" aria-labelledby="step3-title">
+      <div class="ob-step-header">
+        <div class="ob-step-num">Étape 03 / 04</div>
+        <h2 class="ob-step-title" id="step3-title">Matériel & temps</h2>
+        <p class="ob-step-sub">L'algorithme utilisera uniquement les exercices adaptés à votre équipement.</p>
+      </div>
+
+      <div class="field" id="field-materiel">
+        <label>Équipement disponible</label>
+        <div class="check-grid" role="group" aria-label="Équipement disponible">
+          <input class="check-option" type="checkbox" id="mat-corps" name="materiel" value="corps" checked disabled />
+          <label class="check-label" for="mat-corps">🧍 Corps seul</label>
+
+          <input class="check-option" type="checkbox" id="mat-halteres" name="materiel" value="halteres" />
+          <label class="check-label" for="mat-halteres">🏋️ Haltères</label>
+
+          <input class="check-option" type="checkbox" id="mat-barre" name="materiel" value="barre" />
+          <label class="check-label" for="mat-barre">⚙️ Barre de traction</label>
+
+          <input class="check-option" type="checkbox" id="mat-elastiques" name="materiel" value="elastiques" />
+          <label class="check-label" for="mat-elastiques">🔵 Élastiques</label>
+        </div>
+        <p class="field-hint">Corps seul est toujours inclus.</p>
+      </div>
+
+      <div class="field" id="field-seances">
+        <label>Séances par semaine</label>
+        <div class="choice-grid" role="radiogroup" aria-label="Nombre de séances par semaine">
+          <input class="choice-option" type="radio" name="seances" id="s2" value="2" />
+          <label class="choice-label" for="s2">
+            <span class="choice-icon" aria-hidden="true">2</span>
+            séances
+          </label>
+          <input class="choice-option" type="radio" name="seances" id="s3" value="3" />
+          <label class="choice-label" for="s3">
+            <span class="choice-icon" aria-hidden="true">3</span>
+            séances
+          </label>
+          <input class="choice-option" type="radio" name="seances" id="s4" value="4" />
+          <label class="choice-label" for="s4">
+            <span class="choice-icon" aria-hidden="true">4</span>
+            séances
+          </label>
+          <input class="choice-option" type="radio" name="seances" id="s5" value="5" />
+          <label class="choice-label" for="s5">
+            <span class="choice-icon" aria-hidden="true">5</span>
+            séances
+          </label>
+          <input class="choice-option" type="radio" name="seances" id="s6" value="6" />
+          <label class="choice-label" for="s6">
+            <span class="choice-icon" aria-hidden="true">6</span>
+            séances
+          </label>
+        </div>
+        <span class="field-error" role="alert">Choisissez un nombre de séances</span>
+      </div>
+
+      <div class="field" id="field-objectif">
+        <label for="objectif">Objectif principal</label>
+        <select id="objectif" name="objectif">
+          <option value="" disabled selected>Choisir…</option>
+          <option value="force">Gagner en force</option>
+          <option value="muscle">Prise de masse musculaire</option>
+          <option value="endurance">Endurance & cardio</option>
+          <option value="seche">Perte de poids / sèche</option>
+          <option value="mobilite">Mobilité & bien-être</option>
+        </select>
+        <span class="field-error" role="alert">Veuillez choisir un objectif</span>
+      </div>
+
+      <div class="ob-nav">
+        <button class="btn btn-ghost" id="btn-prev-3" type="button">← Retour</button>
+        <button class="btn btn-primary" id="btn-next-3" type="button">Continuer →</button>
+      </div>
+    </div>
+  </template>
+
+  <!-- Étape 4 : Récapitulatif & génération -->
+  <template id="tpl-step-4">
+    <div class="ob-card" role="region" aria-labelledby="step4-title">
+      <div class="ob-step-header">
+        <div class="ob-step-num">Étape 04 / 04</div>
+        <h2 class="ob-step-title" id="step4-title">Votre profil</h2>
+        <p class="ob-step-sub">Vérifiez vos données avant la génération de votre programme.</p>
+      </div>
+
+      <!-- Résumé généré dynamiquement par JS dans #summary-content -->
+      <div id="summary-content" aria-live="polite"></div>
+
+      <hr class="divider" />
+
+      <!-- Calories estimées -->
+      <div style="text-align:center; padding: 1rem 0;">
+        <div class="label-tag">Besoins caloriques estimés</div>
+        <div style="margin-top: 0.5rem;">
+          <span id="calories-result"
+                style="font-family: var(--font-display); font-size: 3rem; font-weight: 900; color: var(--accent); letter-spacing: -0.04em;">
+            —
+          </span>
+          <span style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-secondary); margin-left: 0.5rem;">
+            kcal / jour
+          </span>
+        </div>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">
+          Formule Mifflin-St Jeor · Facteur d'activité inclus
+        </p>
+      </div>
+
+      <div class="ob-nav">
+        <button class="btn btn-ghost" id="btn-prev-4" type="button">← Modifier</button>
+        <button class="btn btn-primary" id="btn-generate" type="button">
+          ⚡ Générer mon programme
+        </button>
+      </div>
+    </div>
+  </template>
+
+  <!-- Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/onboarding.js"></script>
+  <script src="js/particles-config.js"></script>
+
+</body>
+</html>
