@@ -1,0 +1,65 @@
+{
+  "version": "1.0",
+  "exercices": [
+    {
+      "id": "push_up_standard",
+      "nom": "Pompe Standard",
+      "categorie": "poussée_haute",
+      "muscles_primaires": ["pectoraux", "triceps"],
+      "muscles_secondaires": ["deltoides_ant", "core"],
+      "materiel_requis": ["corps"],
+      "niveau": {
+        "min_reps_prerequis": 0,
+        "max_reps_prerequis": 15,
+        "series_recommandees": 3,
+        "reps_cibles": "60-70% du max",
+        "ratio_max": 0.65
+      },
+      "variante_plus_facile": "push_up_incline",
+      "variante_plus_difficile": "push_up_decline",
+      "description": "Planche, mains à largeur d'épaules. Corps rigide de la tête aux talons.",
+      "tempo": "2-0-1",
+      "tags": ["poitrine", "triceps", "force", "corps"]
+    },
+    {
+      "id": "push_up_decline",
+      "nom": "Pompe Déclinée",
+      "categorie": "poussée_haute",
+      "muscles_primaires": ["pectoraux_haut", "deltoides_ant"],
+      "muscles_secondaires": ["triceps", "core"],
+      "materiel_requis": ["corps"],
+      "niveau": {
+        "min_reps_prerequis": 16,
+        "max_reps_prerequis": 999,
+        "series_recommandees": 4,
+        "reps_cibles": "60-70% du max",
+        "ratio_max": 0.65
+      },
+      "variante_plus_facile": "push_up_standard",
+      "variante_plus_difficile": "push_up_archer",
+      "description": "Pieds surélevés sur un banc ou une chaise. Inclinaison à ~30°.",
+      "tempo": "2-1-1",
+      "tags": ["poitrine", "épaules", "force", "corps"]
+    },
+    {
+      "id": "dumbbell_curl",
+      "nom": "Curl Haltères",
+      "categorie": "tirage_bras",
+      "muscles_primaires": ["biceps"],
+      "muscles_secondaires": ["brachial", "avant_bras"],
+      "materiel_requis": ["halteres"],
+      "niveau": {
+        "min_reps_prerequis": 0,
+        "max_reps_prerequis": 999,
+        "series_recommandees": 3,
+        "reps_cibles": 10,
+        "ratio_max": null
+      },
+      "variante_plus_facile": null,
+      "variante_plus_difficile": "dumbbell_hammer_curl",
+      "description": "Debout, paumes vers le ciel. Fléchir les coudes sans bouger les épaules.",
+      "tempo": "2-1-2",
+      "tags": ["biceps", "bras", "corps"]
+    }
+  ]
+}
