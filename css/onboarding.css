@@ -1,1 +1,478 @@
+/* ============================================================
+   FITFORGE — ONBOARDING STYLES
+   Formulaire multi-étapes + animations d'entrée
+   ============================================================ */
 
+/* --- Wrapper global --- */
+#onboarding {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8) var(--space-4);
+  position: relative;
+}
+
+/* --- Logo / titre --- */
+.ob-logo {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: var(--text-primary);
+  margin-bottom: var(--space-12);
+  text-align: center;
+}
+
+.ob-logo span {
+  color: var(--accent);
+}
+
+/* --- Barre de progression --- */
+.progress-track {
+  width: 100%;
+  max-width: 540px;
+  margin-bottom: var(--space-8);
+}
+
+.progress-steps {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  gap: var(--space-2);
+  position: relative;
+}
+
+.progress-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: calc(50% + 14px);
+  right: calc(-50% + 14px);
+  height: 1px;
+  background: var(--border-mid);
+  transition: background var(--t-slow) var(--ease-out);
+  z-index: 0;
+}
+
+.progress-step.done:not(:last-child)::after {
+  background: var(--accent);
+}
+
+.step-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--border-mid);
+  background: var(--bg-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  transition:
+    border-color var(--t-mid) var(--ease-out),
+    background var(--t-mid) var(--ease-out),
+    color var(--t-mid) var(--ease-out),
+    box-shadow var(--t-mid) var(--ease-out);
+  position: relative;
+  z-index: 1;
+}
+
+.progress-step.active .step-dot {
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-ghost);
+}
+
+.progress-step.done .step-dot {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #000;
+}
+
+.step-dot svg {
+  width: 12px;
+  height: 12px;
+}
+
+.step-label {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: color var(--t-mid) var(--ease-out);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.progress-step.active .step-label,
+.progress-step.done .step-label {
+  color: var(--text-secondary);
+}
+
+/* --- Carte d'étape --- */
+.ob-card {
+  width: 100%;
+  max-width: 540px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: var(--space-10) var(--space-8);
+  box-shadow: var(--shadow-card);
+
+  /* Animation d'entrée — état initial */
+  opacity: 0;
+  transform: translateY(24px);
+  animation: slideUp var(--t-slow) var(--ease-out) forwards;
+}
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Transition de sortie (classe JS) */
+.ob-card.exiting {
+  opacity: 1;
+  transform: translateY(0);
+  animation: slideDown var(--t-mid) var(--ease-in) forwards;
+}
+
+@keyframes slideDown {
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+.ob-step-header {
+  margin-bottom: var(--space-8);
+}
+
+.ob-step-num {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-3);
+}
+
+.ob-step-title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.ob-step-sub {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+/* --- Champs de formulaire --- */
+.field {
+  margin-bottom: var(--space-5);
+}
+
+.field label {
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-2);
+  letter-spacing: 0.02em;
+}
+
+.field-hint {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  margin-top: var(--space-1);
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+/* --- Sélection radio visuelle (genre, matériel) --- */
+.choice-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: var(--space-3);
+}
+
+.choice-option {
+  display: none;
+}
+
+.choice-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-3);
+  background: var(--bg-raised);
+  border: 1px solid var(--border-mid);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  transition:
+    border-color var(--t-fast) var(--ease-out),
+    background var(--t-fast) var(--ease-out),
+    color var(--t-fast) var(--ease-out),
+    transform var(--t-fast) var(--ease-out),
+    box-shadow var(--t-fast) var(--ease-out);
+  user-select: none;
+}
+
+.choice-label .choice-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.choice-label:hover {
+  border-color: var(--border-accent);
+  color: var(--text-primary);
+  transform: translateY(-2px);
+}
+
+.choice-option:checked + .choice-label {
+  border-color: var(--accent);
+  background: var(--accent-ghost);
+  color: var(--accent);
+  box-shadow: var(--glow-subtle);
+}
+
+/* Checkbox visuelle (multi-sélection matériel) */
+.check-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: var(--space-3);
+}
+
+.check-option {
+  display: none;
+}
+
+.check-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--bg-raised);
+  border: 1px solid var(--border-mid);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  transition:
+    border-color var(--t-fast) var(--ease-out),
+    background var(--t-fast) var(--ease-out),
+    color var(--t-fast) var(--ease-out);
+  user-select: none;
+}
+
+.check-label::before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid var(--border-mid);
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+  transition:
+    border-color var(--t-fast) var(--ease-out),
+    background var(--t-fast) var(--ease-out);
+}
+
+.check-label:hover {
+  border-color: var(--border-accent);
+  color: var(--text-primary);
+}
+
+.check-option:checked + .check-label {
+  border-color: var(--accent);
+  background: var(--accent-ghost);
+  color: var(--accent);
+}
+
+.check-option:checked + .check-label::before {
+  background: var(--accent);
+  border-color: var(--accent);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 10'%3E%3Cpath d='M1 5l3.5 3.5L11 1' stroke='%23000' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-size: 70%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* --- Slider de reps --- */
+.slider-field {
+  margin-bottom: var(--space-5);
+}
+
+.slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: var(--space-3);
+}
+
+.slider-name {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.slider-value {
+  font-family: var(--font-mono);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--accent);
+  min-width: 3ch;
+  text-align: right;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: var(--border-mid);
+  border-radius: var(--radius-full);
+  outline: none;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: var(--radius-full);
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow);
+  transition: transform var(--t-fast) var(--ease-out), box-shadow var(--t-fast);
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: var(--glow-accent);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: var(--radius-full);
+  background: var(--accent);
+  border: none;
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+/* --- Navigation de l'onboarding --- */
+.ob-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--space-8);
+  gap: var(--space-4);
+}
+
+.ob-nav .btn {
+  min-width: 120px;
+}
+
+/* --- Message d'erreur --- */
+.field-error {
+  font-size: var(--text-xs);
+  color: #ff4444;
+  margin-top: var(--space-1);
+  display: none;
+}
+
+.field.has-error input,
+.field.has-error select {
+  border-color: #ff4444;
+  box-shadow: 0 0 0 3px rgba(255, 68, 68, 0.12);
+}
+
+.field.has-error .field-error {
+  display: block;
+}
+
+/* --- Étape résumé (dernière) --- */
+.summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.summary-item {
+  background: var(--bg-raised);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+}
+
+.summary-key {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-1);
+}
+
+.summary-val {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.summary-val.highlight {
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+}
+
+/* --- Responsive --- */
+@media (max-width: 600px) {
+  .ob-card {
+    padding: var(--space-6) var(--space-5);
+    border-radius: var(--radius-lg);
+  }
+
+  .field-row {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .step-label {
+    display: none;
+  }
+
+  .ob-nav .btn-ghost {
+    min-width: auto;
+  }
+}
