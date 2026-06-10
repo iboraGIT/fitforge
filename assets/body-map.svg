@@ -1,0 +1,308 @@
+<svg id="body-svg" viewBox="0 0 260 520" xmlns="http://www.w3.org/2000/svg"
+     role="img" aria-labelledby="svg-title svg-desc">
+  <title id="svg-title">Schéma corporel musculaire</title>
+  <desc id="svg-desc">Vue antérieure et postérieure du corps humain avec groupes musculaires interactifs</desc>
+
+  <!-- ========================================================
+       VUE ANTERIEURE (gauche, x=0..130)
+       ======================================================== -->
+  <g id="anterior">
+
+    <!-- Silhouette générale avant -->
+    <path class="body-outline" d="
+      M65,18
+      C57,18 51,24 50,32
+      C49,38 50,44 48,50
+      C44,58 38,62 35,70
+      C32,78 32,84 33,92
+      C34,100 38,106 40,112
+      C42,118 42,122 41,128
+      C36,132 26,136 24,142
+      C22,148 24,154 26,158
+      C28,162 32,164 34,168
+      C36,172 36,178 36,184
+      C34,190 30,196 28,202
+      C26,208 26,216 27,222
+      C28,228 30,234 31,240
+      C32,246 32,252 31,258
+      C30,270 28,282 29,294
+      C30,306 34,316 35,326
+      C36,332 36,338 35,344
+      C34,350 32,354 32,360
+      C32,374 34,386 36,396
+      C37,402 38,408 37,414
+      L36,428 L40,432 L44,428 L45,412
+      C46,402 46,392 48,384
+      C50,374 53,366 54,358
+      C55,350 55,342 56,334
+      C57,326 59,320 65,318
+      C71,320 73,326 74,334
+      C75,342 75,350 76,358
+      C77,366 80,374 82,384
+      C84,392 84,402 85,412
+      L86,428 L90,432 L94,428 L93,414
+      C92,408 93,402 94,396
+      C96,386 98,374 98,360
+      C98,354 96,350 95,344
+      C94,338 94,332 95,326
+      C96,316 100,306 101,294
+      C102,282 100,270 99,258
+      C98,252 98,246 99,240
+      C100,234 102,228 103,222
+      C104,216 104,208 102,202
+      C100,196 96,190 94,184
+      C94,178 94,172 96,168
+      C98,164 102,162 104,158
+      C106,154 108,148 106,142
+      C104,136 94,132 89,128
+      C88,122 88,118 90,112
+      C92,106 96,100 97,92
+      C98,84 98,78 95,70
+      C92,62 86,58 82,50
+      C80,44 81,38 80,32
+      C79,24 73,18 65,18 Z"
+    />
+
+    <!-- TÊTE -->
+    <ellipse class="body-outline" cx="65" cy="11" rx="11" ry="12"/>
+    <path class="body-detail" d="M57,8 Q65,6 73,8"/>
+
+    <!-- CLAVICULES -->
+    <path class="body-detail" d="M52,54 Q65,50 78,54"/>
+
+    <!-- LIGNE STERNALE -->
+    <path class="body-detail" d="M65,54 L65,98"/>
+
+    <!-- LIGNE ALBA (abdos) -->
+    <path class="body-detail" d="M65,98 L65,126"/>
+
+    <!-- LIGNES TRANSVERSES ABDOS -->
+    <path class="body-detail" d="M57,104 Q65,102 73,104"/>
+    <path class="body-detail" d="M56,112 Q65,110 74,112"/>
+    <path class="body-detail" d="M56,120 Q65,118 74,120"/>
+
+    <!-- ===== PECTORAUX ===== -->
+    <g id="pectoraux" class="muscle-group" aria-label="Pectoraux">
+      <!-- Pec gauche (notre droite) -->
+      <path d="M51,55 C48,56 44,60 43,66 C42,70 43,76 46,80 C48,84 52,86 56,87 C60,88 64,87 65,86 L65,55 Z"/>
+      <!-- Pec droit (notre gauche) -->
+      <path d="M79,55 C82,56 86,60 87,66 C88,70 87,76 84,80 C82,84 78,86 74,87 C70,88 66,87 65,86 L65,55 Z"/>
+    </g>
+
+    <!-- ===== DELTOIDES AVANT ===== -->
+    <g id="deltoides_ant" class="muscle-group" aria-label="Deltoïdes antérieurs">
+      <!-- Deltoïde gauche -->
+      <path d="M42,56 C38,54 34,56 32,60 C30,64 31,70 34,74 C36,76 39,76 42,74 C44,72 45,68 45,64 Z"/>
+      <!-- Deltoïde droit -->
+      <path d="M88,56 C92,54 96,56 98,60 C100,64 99,70 96,74 C94,76 91,76 88,74 C86,72 85,68 85,64 Z"/>
+    </g>
+
+    <!-- ===== BICEPS ===== -->
+    <g id="biceps" class="muscle-group" aria-label="Biceps">
+      <!-- Biceps gauche -->
+      <path d="M33,75 C30,78 28,84 28,90 C28,96 30,102 33,106 C35,108 38,108 40,106 C42,104 43,98 43,92 C43,86 42,80 40,76 Z"/>
+      <!-- Biceps droit -->
+      <path d="M97,75 C100,78 102,84 102,90 C102,96 100,102 97,106 C95,108 92,108 90,106 C88,104 87,98 87,92 C87,86 88,80 90,76 Z"/>
+    </g>
+
+    <!-- ===== TRICEPS AVANT (visible latéralement) ===== -->
+    <g id="triceps" class="muscle-group" aria-label="Triceps">
+      <!-- Triceps gauche (latéral) -->
+      <path d="M31,77 C28,80 26,86 26,92 C26,100 28,106 30,110 L33,108 C30,104 29,98 29,92 C29,86 30,82 32,79 Z"/>
+      <!-- Triceps droit (latéral) -->
+      <path d="M99,77 C102,80 104,86 104,92 C104,100 102,106 100,110 L97,108 C100,104 101,98 101,92 C101,86 100,82 98,79 Z"/>
+    </g>
+
+    <!-- ===== AVANT-BRAS ===== -->
+    <g id="avant_bras" class="muscle-group" aria-label="Avant-bras">
+      <!-- Avant-bras gauche -->
+      <path d="M27,112 C24,116 23,122 23,128 C23,136 24,144 26,150 C27,154 29,156 31,156 C33,156 35,154 36,150 C38,144 38,136 37,128 C36,122 35,116 33,112 Z"/>
+      <!-- Avant-bras droit -->
+      <path d="M103,112 C106,116 107,122 107,128 C107,136 106,144 104,150 C103,154 101,156 99,156 C97,156 95,154 94,150 C92,144 92,136 93,128 C94,122 95,116 97,112 Z"/>
+    </g>
+
+    <!-- ===== ABDOMINAUX ===== -->
+    <g id="abdominaux" class="muscle-group" aria-label="Abdominaux">
+      <!-- Rect abdo gauche -->
+      <path d="M57,98 L65,98 L65,126 C62,126 58,124 56,120 C54,116 54,108 57,104 Z"/>
+      <!-- Rect abdo droit -->
+      <path d="M73,98 L65,98 L65,126 C68,126 72,124 74,120 C76,116 76,108 73,104 Z"/>
+    </g>
+
+    <!-- ===== OBLIQUES ===== -->
+    <g id="obliques" class="muscle-group" aria-label="Obliques">
+      <!-- Oblique gauche -->
+      <path d="M44,88 C42,94 40,100 40,108 C40,116 42,122 45,126 C48,128 52,128 55,126 C57,124 57,120 56,116 C55,110 52,104 49,98 C47,94 45,90 44,88 Z"/>
+      <!-- Oblique droit -->
+      <path d="M86,88 C88,94 90,100 90,108 C90,116 88,122 85,126 C82,128 78,128 75,126 C73,124 73,120 74,116 C75,110 78,104 81,98 C83,94 85,90 86,88 Z"/>
+    </g>
+
+    <!-- ===== QUADRICEPS ===== -->
+    <g id="quadriceps" class="muscle-group" aria-label="Quadriceps">
+      <!-- Quad gauche -->
+      <path d="M38,200 C36,208 34,218 33,228 C32,238 32,250 33,260 C34,268 36,274 39,278 C42,282 46,284 50,284 C54,284 57,282 58,278 C60,272 60,262 59,250 C58,238 56,228 54,218 C52,208 50,202 48,198 Z"/>
+      <!-- Quad droit -->
+      <path d="M92,200 C94,208 96,218 98,228 C100,238 100,250 97,260 C96,268 94,274 91,278 C88,282 84,284 80,284 C76,284 73,282 72,278 C70,272 70,262 71,250 C72,238 74,228 76,218 C78,208 80,202 82,198 Z"/>
+    </g>
+
+    <!-- ===== TIBIAS / JAMBE AVANT ===== -->
+    <g id="tibias" class="muscle-group" aria-label="Tibias / Jambiers antérieurs">
+      <!-- Tibia gauche -->
+      <path d="M36,330 C35,342 34,356 34,368 C34,380 35,390 37,398 C38,402 40,404 42,404 C44,404 46,402 47,398 C48,390 48,378 47,366 C46,354 44,342 42,332 Z"/>
+      <!-- Tibia droit -->
+      <path d="M94,330 C95,342 96,356 96,368 C96,380 95,390 93,398 C92,402 90,404 88,404 C86,404 84,402 83,398 C82,390 82,378 83,366 C84,354 86,342 88,332 Z"/>
+    </g>
+
+    <!-- GENOUX détail -->
+    <ellipse class="body-detail" cx="44" cy="302" rx="10" ry="8"/>
+    <ellipse class="body-detail" cx="86" cy="302" rx="10" ry="8"/>
+
+    <!-- PIEDS -->
+    <ellipse class="body-outline" cx="41" cy="428" rx="9" ry="5"/>
+    <ellipse class="body-outline" cx="89" cy="428" rx="9" ry="5"/>
+
+  </g>
+
+  <!-- ========================================================
+       VUE POSTERIEURE (droite, x=130..260)
+       Décalage +130 sur x
+       ======================================================== -->
+  <g id="posterior" transform="translate(130, 0)">
+
+    <!-- Silhouette générale arrière -->
+    <path class="body-outline" d="
+      M65,18
+      C57,18 51,24 50,32
+      C49,38 50,44 48,50
+      C44,58 38,62 35,70
+      C32,78 32,84 33,92
+      C34,100 38,106 40,112
+      C42,118 42,122 41,128
+      C36,132 26,136 24,142
+      C22,148 24,154 26,158
+      C28,162 32,164 34,168
+      C36,172 36,178 36,184
+      C34,190 30,196 28,202
+      C26,208 26,216 27,222
+      C28,228 30,234 31,240
+      C32,246 32,252 31,258
+      C30,270 28,282 29,294
+      C30,306 34,316 35,326
+      C36,332 36,338 35,344
+      C34,350 32,354 32,360
+      C32,374 34,386 36,396
+      C37,402 38,408 37,414
+      L36,428 L40,432 L44,428 L45,412
+      C46,402 46,392 48,384
+      C50,374 53,366 54,358
+      C55,350 55,342 56,334
+      C57,326 59,320 65,318
+      C71,320 73,326 74,334
+      C75,342 75,350 76,358
+      C77,366 80,374 82,384
+      C84,392 84,402 85,412
+      L86,428 L90,432 L94,428 L93,414
+      C92,408 93,402 94,396
+      C96,386 98,374 98,360
+      C98,354 96,350 95,344
+      C94,338 94,332 95,326
+      C96,316 100,306 101,294
+      C102,282 100,270 99,258
+      C98,252 98,246 99,240
+      C100,234 102,228 103,222
+      C104,216 104,208 102,202
+      C100,196 96,190 94,184
+      C94,178 94,172 96,168
+      C98,164 102,162 104,158
+      C106,154 108,148 106,142
+      C104,136 94,132 89,128
+      C88,122 88,118 90,112
+      C92,106 96,100 97,92
+      C98,84 98,78 95,70
+      C92,62 86,58 82,50
+      C80,44 81,38 80,32
+      C79,24 73,18 65,18 Z"
+    />
+
+    <!-- TÊTE arrière -->
+    <ellipse class="body-outline" cx="65" cy="11" rx="11" ry="12"/>
+    <path class="body-detail" d="M56,14 Q65,17 74,14"/>
+
+    <!-- ===== TRAPÈZES ===== -->
+    <g id="trapèzes" class="muscle-group" aria-label="Trapèzes">
+      <path d="M52,30 C50,34 48,40 48,48 C52,52 58,54 65,54 C72,54 78,52 82,48 C82,40 80,34 78,30 C74,28 70,27 65,27 C60,27 56,28 52,30 Z"/>
+    </g>
+
+    <!-- ===== DELTOIDES ARRIÈRE ===== -->
+    <g id="deltoides_post" class="muscle-group" aria-label="Deltoïdes postérieurs">
+      <!-- Deltoïde post gauche -->
+      <path d="M42,52 C38,50 34,52 32,56 C30,60 30,66 33,70 C35,72 38,73 41,72 C43,70 45,66 45,62 Z"/>
+      <!-- Deltoïde post droit -->
+      <path d="M88,52 C92,50 96,52 98,56 C100,60 100,66 97,70 C95,72 92,73 89,72 C87,70 85,66 85,62 Z"/>
+    </g>
+
+    <!-- ===== DORSAUX ===== -->
+    <g id="dorsaux" class="muscle-group" aria-label="Grand dorsal">
+      <!-- Dorsal gauche -->
+      <path d="M48,54 C44,60 40,68 37,76 C35,82 34,88 35,94 C36,100 39,104 43,106 C47,108 51,108 54,106 C57,104 58,100 58,94 C59,86 58,78 56,70 C54,62 51,56 48,54 Z"/>
+      <!-- Dorsal droit -->
+      <path d="M82,54 C86,60 90,68 93,76 C95,82 96,88 95,94 C94,100 91,104 87,106 C83,108 79,108 76,106 C73,104 72,100 72,94 C71,86 72,78 74,70 C76,62 79,56 82,54 Z"/>
+    </g>
+
+    <!-- ===== RHOMBOÏDES / MILIEU DOS ===== -->
+    <g id="rhomboïdes" class="muscle-group" aria-label="Rhomboïdes / Milieu du dos">
+      <path d="M55,54 C57,56 60,58 65,58 C70,58 73,56 75,54 L74,72 C72,76 70,78 65,78 C60,78 58,76 56,72 Z"/>
+    </g>
+
+    <!-- ===== LOMBAIRES ===== -->
+    <g id="lombaires" class="muscle-group" aria-label="Lombaires">
+      <path d="M57,106 C58,112 59,118 60,124 L65,124 L70,124 C71,118 72,112 73,106 C70,104 66,103 65,103 C64,103 60,104 57,106 Z"/>
+    </g>
+
+    <!-- ===== FESSIERS ===== -->
+    <g id="fessiers" class="muscle-group" aria-label="Fessiers">
+      <!-- Fessier gauche -->
+      <path d="M38,140 C35,148 33,158 33,168 C33,178 35,186 39,192 C42,196 47,198 52,198 C57,198 61,196 63,192 C65,188 65,182 64,174 C63,164 60,154 56,146 C52,138 46,136 42,136 Z"/>
+      <!-- Fessier droit -->
+      <path d="M92,140 C95,148 97,158 97,168 C97,178 95,186 91,192 C88,196 83,198 78,198 C73,198 69,196 67,192 C65,188 65,182 66,174 C67,164 70,154 74,146 C78,138 84,136 88,136 Z"/>
+    </g>
+
+    <!-- ===== ISCHIO-JAMBIERS ===== -->
+    <g id="ischio_jambiers" class="muscle-group" aria-label="Ischio-jambiers">
+      <!-- Ischio gauche -->
+      <path d="M37,200 C35,210 33,222 33,234 C33,246 34,258 36,268 C38,276 41,282 45,284 C49,286 53,284 55,280 C58,274 58,262 57,250 C56,238 53,226 50,216 C47,206 43,200 39,198 Z"/>
+      <!-- Ischio droit -->
+      <path d="M93,200 C95,210 97,222 97,234 C97,246 96,258 94,268 C92,276 89,282 85,284 C81,286 77,284 75,280 C72,274 72,262 73,250 C74,238 77,226 80,216 C83,206 87,200 91,198 Z"/>
+    </g>
+
+    <!-- ===== MOLLETS ===== -->
+    <g id="mollets" class="muscle-group" aria-label="Mollets">
+      <!-- Mollet gauche -->
+      <path d="M36,310 C34,320 32,332 32,344 C32,356 33,366 36,374 C37,378 39,380 42,380 C45,380 47,378 48,374 C50,366 50,354 49,342 C48,330 46,320 43,312 Z"/>
+      <!-- Mollet droit -->
+      <path d="M94,310 C96,320 98,332 98,344 C98,356 97,366 94,374 C93,378 91,380 88,380 C85,380 83,378 82,374 C80,366 80,354 81,342 C82,330 84,320 87,312 Z"/>
+    </g>
+
+    <!-- GENOUX arrière détail -->
+    <ellipse class="body-detail" cx="44" cy="298" rx="10" ry="7"/>
+    <ellipse class="body-detail" cx="86" cy="298" rx="10" ry="7"/>
+
+    <!-- PIEDS arrière -->
+    <ellipse class="body-outline" cx="41" cy="428" rx="9" ry="5"/>
+    <ellipse class="body-outline" cx="89" cy="428" rx="9" ry="5"/>
+
+    <!-- Label -->
+    <text x="65" y="468" text-anchor="middle"
+          font-family="'JetBrains Mono', monospace"
+          font-size="7" fill="#333" letter-spacing="0.1em">POSTERIOR</text>
+  </g>
+
+  <!-- Labels vues -->
+  <text x="65" y="468" text-anchor="middle"
+        font-family="'JetBrains Mono', monospace"
+        font-size="7" fill="#333" letter-spacing="0.1em">ANTERIOR</text>
+
+  <!-- Ligne de séparation centrale -->
+  <line x1="130" y1="10" x2="130" y2="460" stroke="#1e1e1e" stroke-width="1"/>
+
+</svg>
